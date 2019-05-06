@@ -221,32 +221,3 @@ Add mounting in fstab: TODO
 
 * Add Compiz to Elementary OS: https://elementaryos.stackexchange.com/questions/2591/can-you-install-compiz-on-elementary-os/14497#14497
 * Add Pacman progress bar: https://github.com/xeBuz/pacman-progressbar
-
-{"licenseId":"ThisCrackLicenseId",
-"licenseeName":"brian.urbina",
-"assigneeName":"brian.urbina",
-"assigneeEmail":"rover12421@163.com",
-"licenseRestriction":"By Rover12421 Crack, Only Test! Please support genuine!!!",
-"checkConcurrentUse":false,
-"products":[
-{"code":"II","paidUpTo":"2099-12-31"},
-{"code":"DM","paidUpTo":"2099-12-31"},
-{"code":"AC","paidUpTo":"2099-12-31"},
-{"code":"RS0","paidUpTo":"2099-12-31"},
-{"code":"WS","paidUpTo":"2099-12-31"},
-{"code":"DPN","paidUpTo":"2099-12-31"},
-{"code":"RC","paidUpTo":"2099-12-31"},
-{"code":"PS","paidUpTo":"2099-12-31"},
-{"code":"DC","paidUpTo":"2099-12-31"},
-{"code":"RM","paidUpTo":"2099-12-31"},
-{"code":"CL","paidUpTo":"2099-12-31"},
-{"code":"PC","paidUpTo":"2099-12-31"},
-{"code":"DB","paidUpTo":"2099-12-31"},
-{"code":"GO","paidUpTo":"2099-12-31"},
-{"code":"RD","paidUpTo":"2099-12-31"}
-],
-"hash":"2911276/0",
-"gracePeriodDays":7,
-"autoProlongated":false}
-
-
