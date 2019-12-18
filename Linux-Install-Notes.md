@@ -210,6 +210,32 @@ Links:
 * Install XFCE
   - https://www.archlinuxuser.com/2013/05/how-to-install-xfce-dekstop-environment.html
 
+## Arch notes
+
+Installing bootloader:
+
+* Mount root directory to /mnt and mount EFI partition to /mnt/boot
+
+-mount /dev/nvme0n1p7 /mnt
+-mkdir /mnt/boot
+-mount /dev/nvme0n1p2 /mnt/boot
+-arch-chroot /mnt
+-pacman -S grub os-prober
+-grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub
+//Make sure Linux is installed before running grub, img files need to exist in the EFI partition! if doing offline, go to /var/cache and find linux tar.xz
+-grub-mkconfig -o /boot/grub/grub.cfg
+
+* Wifi
+
+-Install driver via dkms and also install iw and wpa_suplicant
+-Follow instructions on wpa_supplicant on arch to connect to wifi
+from https://github.com/zebulon2/rtl8814au.git
+
+* Arch Nvidia install
+
+- install nvidia-dkms using yay (instead of nvidia)
+- Use linux v. 5.2 for wifi support (use gcc libs dated before sept 2019)
+
 ## General Linux Tasks
 
 Add Mounting Script:
