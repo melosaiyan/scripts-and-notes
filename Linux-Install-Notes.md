@@ -284,6 +284,10 @@ Reference: https://wiki.archlinux.org/index.php/PCI_passthrough_via_OVMF#With_vf
 Virt-Manager Tips
 
   - If network default not active issue comes up, do "sudo virsh net-start default"
+  
+Sublime Locale Issue
+
+  - Make sure locale.conf and locale.gen are updated, then run "sudo locale-gen"
 
 ## General Linux Tasks
 
