@@ -273,6 +273,13 @@ Enable IOMMU for PCI passthrough:
   - Edit /etc/default/grub and append your kernel options to the GRUB_CMDLINE_LINUX_DEFAULT line: intel_iommu=on iommu=pt
   - Run "grub-mkconfig -o /boot/grub/grub.cfg" (delete fallback image if no space left on device
   - Reboot and verify IOMMU is on: "dmesg | grep -i -e DMAR -e IOMMU"
+  
+Adding PCI card for passthrough:
+
+Reference: https://wiki.archlinux.org/index.php/PCI_passthrough_via_OVMF#With_vfio-pci_loaded_as_a_module
+
+  - Make sure EFI partition is mounted
+  - After regenerating mkinitcpio, make sure /boot/grub/grub.cfg is modified to point to new .img on /boot
 
 ## General Linux Tasks
 
