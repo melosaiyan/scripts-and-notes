@@ -212,7 +212,7 @@ Links:
 
 ## Arch notes
 
-Installing bootloader:
+Installing GRUB bootloader:
 
 * Mount root directory to /mnt and mount EFI partition to /mnt/boot
 
@@ -236,6 +236,32 @@ from https://github.com/zebulon2/rtl8814au.git
 
   - install nvidia-dkms using yay (instead of nvidia)
   - Use linux v. 5.2 for wifi support (use gcc libs dated before sept 2019)
+  
+* Virt-Manager Setup
+
+Pacman install:
+
+  - sudo pacman -S pobject-introspection
+  - sudo pacman -S libvirt
+  - sudo pacman -S libvirt-python
+
+Install Pip:
+
+  - python -m ensurepip --default-pip
+  - python -m pip install --upgrade pip setuptools wheel
+
+Using pip, install:
+
+  - sudo pip install pygobject
+  - sudo pip install libvirt-python
+  - sudo pip install requests
+  
+Enable IOMMU for PCI passthrough:
+
+  - Mount EFI/boot partition "sudo mount /dev/sdaX /boot"
+  - Edit /etc/default/grub and append your kernel options to the GRUB_CMDLINE_LINUX_DEFAULT line: intel_iommu=on iommu=pt
+  - Run "grub-mkconfig -o /boot/grub/grub.cfg" (delete fallback image if no space left on device
+  - Reboot and verify IOMMU is on: "dmesg | grep -i -e DMAR -e IOMMU"
 
 ## General Linux Tasks
 
