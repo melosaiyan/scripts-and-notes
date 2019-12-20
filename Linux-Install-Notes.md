@@ -280,6 +280,10 @@ Reference: https://wiki.archlinux.org/index.php/PCI_passthrough_via_OVMF#With_vf
 
   - Make sure EFI partition is mounted
   - After regenerating mkinitcpio, make sure /boot/grub/grub.cfg is modified to point to new .img on /boot
+  
+Virt-Manager Tips
+
+  - If network default not active issue comes up, do "sudo virsh net-start default"
 
 ## General Linux Tasks
 
