@@ -239,8 +239,11 @@ from https://github.com/zebulon2/rtl8814au.git
   
 * Virt-Manager Setup
 
+Reference: https://www.fosslinux.com/2484/how-to-install-virtual-machine-manager-kvm-in-manjaro-and-arch-linux.htm
+
 Pacman install:
 
+  - sudo pacman -S virt-manager qemu vde2 ebtables dnsmasq bridge-utils openbsd-netcat
   - sudo pacman -S pobject-introspection
   - sudo pacman -S libvirt
   - sudo pacman -S libvirt-python
@@ -255,6 +258,14 @@ Using pip, install:
   - sudo pip install pygobject
   - sudo pip install libvirt-python
   - sudo pip install requests
+  
+Enable the Libvirtd service by entering the below command:
+
+  - sudo systemctl enable libvirtd.service
+
+Start the service using below command:
+
+  - sudo systemctl start libvirtd.service
   
 Enable IOMMU for PCI passthrough:
 
