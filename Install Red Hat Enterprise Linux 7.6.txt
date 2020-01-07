@@ -33,6 +33,12 @@ Create RHEL VM with enough hard drive space (20GB should be enough). In VM setti
 
 where $username and $password are your credentials used to login to your redhat account.
 
+* If the above command throws HTTP 401 error,generate an activation key from the article (https://access.redhat.com/articles/1378093) and run the following commands:
+
+[root@localhost] subscription-manager register --org=$ORG_ID --activationkey=$Key_Name
+
+where $ORG_ID and $KEY_NAME are the organization ID, which is a number, and a key name that you specify when you create a key.
+
 * Run the following command to update RHEL:
 
 [root@localhost] yum update
@@ -47,6 +53,10 @@ where $username and $password are your credentials used to login to your redhat 
 [root@localhost] usermod -aG wheel $user
 
 where $user is the non-root user
+
+* If installing on VirtualBox, there will be issues with the mouse not working (at least on 6.0.4). It will require a kernel update (and another yum update):
+
+[root@localhost] yum update kernel
 
 2b. Install Docker CE
 
