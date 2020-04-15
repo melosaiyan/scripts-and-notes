@@ -83,14 +83,16 @@ or
 
 [root@localhost] systemctl enable docker
 
-* (Optional) If you created a non-root user, add to docker group so docker can be run without sudo:
+* (Optional) If you created a non-root user, add to docker group so docker can be run without sudo (create docker group first):
 
-[root@localhost] usermod -aG docker $user
+[root@localhost] sudo groupadd docker
+[root@localhost] sudo usermod -aG docker $user
 
-where $user is the non-root user
+where $user is the non-root user. Restart for changes to be applied.
 
 
 ** Reference: https://docs.docker.com/install/linux/docker-ce/centos/
+** && https://docs.docker.com/engine/install/linux-postinstall/
 
 2c. Install Docker EE
  
