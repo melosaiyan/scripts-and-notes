@@ -180,3 +180,12 @@ After running install, add the line "include /usr/local/lib64/*" to /etc/ld.so.c
 
 From article:
 https://github.com/openssl/openssl/issues/3993#issuecomment-351595443
+
+2h. Connecting to Samba shares
+
+#Connect to Samba Share
+smbclient //HOSTNAME.DOMAIN/FOLDER -U 'DOMAIN\user.name'
+
+#mount samba share from windows onto linux (run 'yum install cifs-utils')
+mount -t cifs //HOSTNAME.DOMAIN/FOLDER -o username=user.name,password=password123 /tmp/util01
+
