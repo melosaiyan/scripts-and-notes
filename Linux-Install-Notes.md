@@ -193,7 +193,7 @@ Links:
   - Reference for [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh)
   - Check current shell: `echo $0` 
   - Add new plugins to: plugins=(... extract history sublime sudo web-search) in ~/.zshrc
-  - Add Custom plugins: `~/.oh-my-zsh/custom/plugins && git clone https://github.com/zsh-users/zsh-syntax-highlighting && git clone https://github.com/zsh-users/zsh-autosuggestions`
+  - Add Custom plugins: `~/.oh-my-zsh/custom/plugins && git clone https://github.com/zsh-users/zsh-syntax-highlighting && git clone https://github.com/zsh-users/zsh-autosuggestions && sed -i 's/(git)/(git extract history sublime sudo web-search zsh-autosuggestions zsh-syntax-highlighting)/g' ~/.zshrc && source ~/.zshrc && cd ~/`
   - Add `zsh-autosuggestions` and `zsh-syntax-highlighting` to plugins 
   - Add to ~/.bashrc: 
     
