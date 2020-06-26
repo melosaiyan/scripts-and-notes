@@ -1,39 +1,50 @@
+#!/bin/bash
 # ZSH Initialization script
-# INCOMPLETE!! TODO finish this script, probably should be zsh file
-echo "Checking for ZSH install"
+# This can be downloaded and run
+# 	chmod +x zsh_initialize.sh && ./zsh_initialize.sh
+# or it can be run directly from github
+# sh -c "$(wget https://raw.githubusercontent.com/melosaiyan/scripts-and-notes/master/vmware_scripts/zsh_initialize.sh -O -)"
 
-ZSH_EXISTS=`which zsh | grep -c "zsh"`
+# Debugging purposes
+# echo Removing previous oh my zsh installs
+# rm -rf ~/.oh-my-zsh ~/.zshrc install.sh
+# Debugging purposes
 
-if [ $ZSH_EXISTS == 0 ]
+echo "Checking for ZSH and Git install"
+
+ZSH_EXISTS=`which zsh >> /dev/null ; echo $?`
+GIT_EXISTS=`which git >> /dev/null ; echo $?`
+USER=`whoami`
+NEW_LINE_AND_TAB="\n\t"
+
+if [[ $ZSH_EXISTS -eq 1 || $GIT_EXISTS -eq 1 ]]
 then
-	echo "No zsh found. Please install first! Exiting...."
+	echo "No zsh or git found. Please install first! Exiting...."
 	exit 1
 fi
 
-echo "ZSH found!"
+echo "ZSH & Git found!"
 
-sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+echo "Grabbing custom zshrc profile!"
 
-echo "Checking for default shell"
+wget https://raw.githubusercontent.com/melosaiyan/scripts-and-notes/master/zshrc/melosaiyan.zshrc
 
-SHELL_STRING=`echo $0 | grep -c "zsh"`
+sed -i "s/melosaiyan/$USER/g" melosaiyan.zshrc
 
-echo "# Initial Comment" > ~/.zshrc
-export SHELL=`which zsh`
-exec "$SHELL" -l
+echo "Moving zsh folder to home directory"
 
-echo $0
-exit 0
+mv melosaiyan.zshrc ~/.zshrc
 
-if [ $SHELL_STRING == 0 ]
-then
-	echo "Zsh isn't default shell. Initializing..."
-	export SHELL=`which zsh`
-	exec "$SHELL" -l
-fi
+ZSH_PATH=`which zsh`
 
-echo "Shell is $SHELL"
-echo "Script complete."
+echo "Now downloading Oh My Zsh"
 
+wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh && chmod +x install.sh && mv install.sh /tmp/
 
-#~/.oh-my-zsh/custom/plugins && git clone https://github.com/zsh-users/zsh-syntax-highlighting && git clone https://github.com/zsh-users/zsh-autosuggestions
+ZSH_PREP_COMMANDS="cd ~\/\.oh-my-zsh\/custom\/plugins \&\& ${NEW_LINE_AND_TAB}git clone https:\/\/github\.com\/zsh-users\/zsh-syntax-highlighting \&\& ${NEW_LINE_AND_TAB}git clone https:\/\/github\.com\/zsh-users\/zsh-autosuggestions \&\& ${NEW_LINE_AND_TAB}cd ~\/"
+
+echo $ZSH_PREP_COMMANDS
+
+sed -i "s/exec zsh/${ZSH_PREP_COMMANDS} \&\& ${NEW_LINE_AND_TAB}exec zsh/g" /tmp/install.sh
+
+sh -c "/tmp/install.sh --keep-zshrc"
