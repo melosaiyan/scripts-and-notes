@@ -2,8 +2,17 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/melosaiyan/.oh-my-zsh"
+export ZSH="/home/melosaiyan/.oh-my-zsh"
 
+# Export LANG
+export LANG=en_US.UTF-8
+export LC_ALL=''
+export LC_CTYPE=en_US.UTF-8
+
+#Export maven configs
+export MAVEN_OPTS="-Xms1024m -Xmx2G -noverify"
+
+#
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -26,8 +35,14 @@ ZSH_THEME="robbyrussell"
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
 
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS=true
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -57,9 +72,6 @@ ZSH_THEME="robbyrussell"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Set fzf installation directory path
-#export FZF_BASE=/home/melosaiyan/.oh-my-zsh/plugins/fzf
-
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -70,6 +82,10 @@ plugins=(extract git sublime sudo history web-search zsh-autosuggestions zsh-syn
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+        source /etc/profile.d/vte.sh
+fi
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -86,15 +102,6 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# 0 -- vanilla completion (abc => abc)
-# 1 -- smart case completion (abc => Abc)
-# 2 -- word flex completion (abc => A-big-Car)
-# 3 -- full flex completion (abc => ABraCadabra)
-zstyle ':completion:*' matcher-list '' \
-  'm:{a-z\-}={A-Z\_}' \
-  'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
-  'r:|?=** m:{a-z\-}={A-Z\_}'
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -104,6 +111,7 @@ zstyle ':completion:*' matcher-list '' \
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #Custom Sublime openings
+alias sudo='sudo '
 alias stz='st ~/.zshrc'
 
 #Docker specific
@@ -117,18 +125,35 @@ alias dps='docker ps'
 
 #Maven
 alias mci='mvn clean install'
+alias mcit='mvn -T 4 clean install'
+alias mcitc='mvn -T 1C clean install'
+alias mcist='mvn -T 4 clean install -DskipTests'
 
 #Zip up files
 alias archive='tar cfJ archive$(timestamp).tar.xz'
 alias archzip='zip -r zip_archive$(timestamp).zip'
 
+#Package Manager (RHEL7)
+# alias yumyum='sudo yum upgrade'
+# alias yums='yum search'
+# alias yelp='yum info'
+# alias yummy='sudo yum install -y'
+
+#Package Manager (Arch + Yum)
+alias yass='yay -S --noconfirm'
+alias yas='yay -Ss'
+alias yaya='yay -Sy'
+alias yar='yay -R'
+alias yaa='yay -Qs'
+
 #Misc
-alias sau='sudo apt update'
-alias saup='sudo apt update && sudo apt upgrade'
 alias chx='chmod +x'
-alias chall='chmod 777'
+alias chall='chmod -R 777'
 alias day='date "+%Y%m%d"'
 alias timestamp='date "+%Y%m%d%H%M%S"'
+
+#Youtube-DL
+alias ytdl="youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best'"
 
 #Reload ZSHRC
 alias srcz='source ~/.zshrc'
