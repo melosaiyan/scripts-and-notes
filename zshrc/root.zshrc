@@ -9,7 +9,8 @@
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
-ZSH_THEME="avit"
+#ZSH_THEME="avit"
+ZSH_THEME="agnoster"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -117,3 +118,11 @@ alias timestamp='date "+%Y%m%d%H%M%S"'
 
 #Reload ZSHRC
 alias srcz='source ~/.zshrc'
+
+#For agnoster zsh theme
+#Change prompt context
+prompt_context() {
+  if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+    prompt_segment black default "%(!.%{%F{yellow}%}.)root@arch"
+  fi
+}
