@@ -27,13 +27,11 @@ echo "ZSH & Git found!"
 
 echo "Grabbing custom zshrc profile!"
 
-wget https://raw.githubusercontent.com/melosaiyan/scripts-and-notes/master/zshrc/melosaiyan.zshrc
-
-sed -i "s/melosaiyan/$USER/g" melosaiyan.zshrc
+wget https://raw.githubusercontent.com/melosaiyan/scripts-and-notes/master/zshrc/general.zshrc
 
 echo "Moving zsh folder to home directory"
 
-mv melosaiyan.zshrc ~/.zshrc
+mv general.zshrc ~/.zshrc
 
 ZSH_PATH=`which zsh`
 
