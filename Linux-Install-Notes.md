@@ -62,6 +62,46 @@
       [ -z "$ZSH_VERSION"] && exec "$SHELL" -l
       ```
 
+#### Winamp: Connect to Windows VM with AjaxAMP
+
+* Pre-reqs:
+
+  * Virt-Manager with Windows 10 VM
+
+1. Create a network bridge (Easiest way is through virt-manager via main window, then Edit > Connection Details, then Virtual Networks)
+2. Follow steps outlined [from dedoimedo](https://www.dedoimedo.com/computers/kvm-bridged.html)
+   * In Virtial Networks, click plus sign
+   * Set mode to Route, then select wifi device
+   * Set IPv4 to be an IP not in use (and for the start and end IPs, do increments of 6)
+3. On Host, install `bridge-utils` and `parprouted`
+4. Optionally, save iptables rules
+   * To save: 
+    
+   `sudo iptables-save > /root/iptables-backup.fw`
+   * To restore: 
+   
+   `sudo iptables-restore > /root/iptables-backup.fw`
+5. Enable ip forwarding and proxy_arp on host:
+  
+  `sudo su`
+
+  `echo 1 > /proc/sys/net/ipv4/ip_forward && echo 1 > /proc/sys/net/ipv4/conf/wlan0/proxy_arp && echo 1 > /proc/sys/net/ipv4/conf/virbr1/proxy_arp`
+6. Implement proxy arp bridging:
+  
+  `sudo parprouted wlan0 virbr1`
+7. Select new bridge connection for VM, turn on VM, and verify
+8. If the above steps do not work, try the following:
+  * [Use arp](https://unix.stackexchange.com/questions/159191/setup-kvm-on-a-wireless-interface-on-a-laptop-machine/159198#159198): 
+  
+    `arp -i wlan0 -Ds 192.168.1.9 wlan0 pub`
+  * Configure ip table rules:
+    
+    `sudo iptables -A INPUT -i virbr1 -j ACCEPT
+     sudo iptables -A FORWARD -i virbr1 -j ACCEPT
+     sudo iptables -A FORWARD -o virbr1 -j ACCEPT`
+  * [Setup tap device](https://superuser.com/a/1486963)
+  
+
 #### Useful Commands/Tips
 * VIM usage
   - yy to yank current line including \n, y$ to yank line without new line (or select lines in visual mode)
