@@ -40,6 +40,8 @@
 * Install Snap (replace apt with proper package manager)
     ```
       sudo apt install snapd
+      systemctl start snapd
+      systemctl enable snapd
       ln -s /var/lib/snapd/snap /snap
       snap install slack --classic
     ```
